@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <rect width="200" height="60" rx="12" fill="#10a37f"/>
+  <text x="20" y="40" font-family="Arial,sans-serif" font-size="22" font-weight="bold" fill="white">ChatOpens</text>
+  <circle cx="170" cy="30" r="12" fill="white" opacity="0.2"/>
+  <text x="163" y="36" font-family="Arial" font-size="16" fill="white">AI</text>
+</svg>

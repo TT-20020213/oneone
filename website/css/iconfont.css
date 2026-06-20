@@ -1,0 +1,14 @@
+@font-face{font-family:"iconfont";src:url('../font/iconfont.woff2') format('woff2'),url('../font/iconfont.woff') format('woff'),url('../font/iconfont.ttf') format('truetype')}
+.iconfont{font-family:"iconfont"!important;font-size:16px;font-style:normal;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.icon-weixin1:before{content:"\e615"}
+.icon-SVG:before{content:"\e62d"}
+.icon-vip:before{content:"\e64c"}
+.icon-bangzhu:before{content:"\e659"}
+.icon-SVG{font-size:36px;color:#666}
+.icon-vip{font-size:36px;color:#666}
+.icon-bangzhu{font-size:36px;color:#666}
+/* Icon font won't load without real files, use CSS-only fallback */
+.iconfont{font-family:Arial,Helvetica,sans-serif}
+.icon-SVG:before{content:"▶";color:#666;font-size:24px}
+.icon-vip:before{content:"♦";color:#ffd700;font-size:28px}
+.icon-bangzhu:before{content:"?";color:#666;font-size:28px;font-weight:bold}

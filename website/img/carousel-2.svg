@@ -1,0 +1,12 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280" width="500" height="280">
+  <rect width="500" height="280" rx="20" fill="url(#g)"/>
+  <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#11998e"/><stop offset="100%" stop-color="#38ef7d"/></linearGradient></defs>
+  <circle cx="380" cy="80" r="45" fill="white" opacity="0.15"/>
+  <circle cx="100" cy="200" r="65" fill="white" opacity="0.1"/>
+  <text x="250" y="120" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">无限创造力</text>
+  <text x="250" y="160" font-family="Arial,sans-serif" font-size="18" fill="white" opacity="0.8" text-anchor="middle">DALL-E &gt; Midjourney</text>
+  <text x="250" y="190" font-family="Arial,sans-serif" font-size="16" fill="white" opacity="0.6" text-anchor="middle">AI绘画，释放你的想象力</text>
+  <circle cx="250" cy="240" r="6" fill="white" opacity="0.3"/>
+  <circle cx="280" cy="240" r="6" fill="white" opacity="0.5"/>
+  <circle cx="220" cy="240" r="6" fill="white" opacity="0.3"/>
+</svg>

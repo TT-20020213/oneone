@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>选车 - AI智能服务</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+</head>
+<body>
+    <div class="list-page">
+        <!-- Header -->
+        <div class="layui-row list-header">
+            <div class="layui-col-xs12 layui-col-sm8 layui-col-md9 left">
+                <img src="img/left-logo.svg" alt="Logo" />
+                <a href="javascript:void(0);" class="layui-font-18 link" data-action="AutoCar">开始对话</a>
+                <a href="javascript:void(0);" class="layui-font-18 link" data-action="Guide">使用方法</a>
+                <a href="javascript:void(0);" class="layui-font-18 link" data-action="Subscribe">定价</a>
+                <a href="javascript:void(0);" class="layui-font-18 link" data-action="Agent">成立分站</a>
+                <a id="linkAPI" href="javascript:void(0);" class="layui-font-18 link" target="_blank">API调用</a>
+            </div>
+            <div class="layui-col-xs12 layui-col-sm4 layui-col-md3 right">
+                <a href="javascript:void(0);" class="layui-font-18 link" style="display:flex;">
+                    <svg aria-hidden="true" fill="none" width="24" height="24" role="presentation" viewBox="0 0 24 24">
+                        <path d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z" fill="currentColor"></path>
+                        <path d="M17.0809 14.1489C14.2909 12.2889 9.74094 12.2889 6.93094 14.1489C5.66094 14.9989 4.96094 16.1489 4.96094 17.3789C4.96094 18.6089 5.66094 19.7489 6.92094 20.5889C8.32094 21.5289 10.1609 21.9989 12.0009 21.9989C13.8409 21.9989 15.6809 21.5289 17.0809 20.5889C18.3409 19.7389 19.0409 18.5989 19.0409 17.3589C19.0309 16.1289 18.3409 14.9889 17.0809 14.1489Z" fill="currentColor"></path>
+                    </svg>
+                    <span data-anonymous data-action="Login">登录</span>
+                </a>
+                <a href="javascript:void(0);" class="layui-font-18 link" data-action="Notice">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <!-- Logo Area -->
+        <div class="layui-row list-logo-box" style="text-align:center;margin-top:36px;">
+            <img src="img/list-logo.svg" style="display:inline-block; height:60px;" />
+            <img src="img/list-logo-label.svg" style="display: inline-block; height: 60px;" />
+        </div>
+        <!-- Subtitle -->
+        <div class="layui-row list-text-box" style="text-align:center;">
+            <img src="img/list-text.svg" style="height:56px;" />
+        </div>
+        <!-- Search Box -->
+        <div class="layui-row list-search-box" style="text-align:center;">
+            <div class="list-search" style="display: flex; width: 680px; margin: 30px auto; align-items: center; gap: 10px; border-radius: 20px; padding: 5px; box-shadow: 0 5px 15px #0000001a; border: 2px solid #d9dcdf;">
+                <input type="text" placeholder="只要问一下，ChatGPT/DeepSeek/Grok就可以帮你写作、学习、处理工作中的任何问题" style="border: none; width: 100%; line-height: 36px; padding-left: 15px;" />
+                <span class="search-icon" data-action="AutoCar">&#128269;</span>
+            </div>
+        </div>
+        <!-- Scrolling AI Models -->
+        <div class="layui-row layui-container list-scrolling-box">
+            <div id="scrolling-container">
+                <div id="scrolling-content"></div>
+            </div>
+        </div>
+        <!-- AI Model Template -->
+        <script type="text/html" id="tplAiModelList">
+            {{# for(var i=0; i<d.length; i++){ }}
+            <a href="javascript:void(0);" class="layui-font-18 link" data-action="{{= d[i].action }}">
+                {{# if (d[i].platform === 'GPT') { }}
+                    <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M432.694 74.059c-20.045 3.277-45.487 11.372-65.725 21.202-50.306 24.478-88.854 66.303-109.478 119.308l-4.048 10.215-16.383 4.819C120.644 263.14 52.606 386.688 86.143 503.875c6.361 22.551 21.395 52.619 35.658 71.7l12.143 15.998-4.433 17.347c-5.59 21.973-7.517 55.895-4.433 78.639 12.143 90.204 77.483 164.409 164.988 187.346 23.707 6.36 61.485 8.48 85.578 5.011l15.805-2.313 14.07 13.299c17.732 16.769 32.766 27.177 55.703 37.97 81.145 38.934 178.48 24.478 245.554-36.428 22.551-20.624 44.909-53.004 55.317-80.374l5.59-14.263 15.612-4.433c20.238-5.59 54.546-22.358 71.508-35.272 50.113-37.97 81.145-93.673 87.89-158.049 5.782-55.317-12.914-116.031-49.535-160.747l-6.36-7.71 3.855-13.492c12.528-45.295 8.288-98.684-11.565-143.786C843.622 193.56 764.597 141.519 677.092 141.519c-12.528 0-28.333.964-34.886 1.927l-12.336 2.12-14.07-13.299C586.31 104.127 551.231 85.624 510.177 76.758c-16.576-3.662-61.292-5.204-77.483-2.699z"></path></svg>
+                {{# } else if (d[i].platform === 'Claude') { }}
+                    <svg viewBox="0 0 1472 1024" width="24" height="24"><path d="M1047.36 0h-222.24L1230.4 1024h222.24L1047.36 0zM405.28 0L0 1024h226.624l82.88-215.04h424l82.88 215.04h226.624L637.728 0h-232.448z m-22.464 618.784l138.688-359.872 138.688 359.872h-277.376z"></path></svg>
+                {{# } else if (d[i].platform === 'Gemini') { }}
+                    <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M746.667 597.333a235.093 235.093 0 0 1-192 167.68 262.4 262.4 0 0 1-298.667-232.533A256 256 0 0 1 512 256a261.12 261.12 0 0 1 96.853 18.773 21.333 21.333 0 0 0 27.307-8.96l61.44-113.066a22.187 22.187 0 0 0-9.813-29.867A426.667 426.667 0 0 0 85.333 524.373 431.787 431.787 0 0 0 493.653 938.667 426.667 426.667 0 0 0 938.667 534.187v-85.334a21.76 21.76 0 0 0-21.334-21.333h-384a21.333 21.333 0 0 0-21.333 21.333v128a21.333 21.333 0 0 0 21.333 21.334h213.334"></path></svg>
+                {{# } else if (d[i].platform === 'Grok') { }}
+                    <svg viewBox="0 0 1086 1024" width="24" height="24"><path d="M410.748 652.878l343.878-254.138c16.849-12.412 40.96-7.571 48.966 11.792 42.294 102.028 23.397 224.69-60.726 308.907-84.092 84.216-201.138 102.71-308.131 60.633l-116.829 54.148c167.595 114.719 371.122 86.326 498.316-41.084 100.88-101.004 132.127-238.685 102.928-362.837l.248.279c-42.356-182.396 10.426-255.286 118.536-404.356 2.544-3.537 5.12-7.075 7.664-10.705l-142.274 142.429v-.434L410.655 653.002M339.782 714.659c-120.304-115.06-99.545-293.112 3.103-395.792 75.9-75.993 200.27-106.993 308.814-61.409l76.611-53.898c-21.008-15.205-47.942-31.558-78.817-43.039A386.793 386.793 0 0 0 269.188 245.17c-109.196 109.32-143.515 277.411-84.558 420.802 44.063 107.179-28.144 183.017-100.88 259.537-25.755 27.12-51.634 54.241-72.456 82.975l328.394-293.733"></path></svg>
+                {{# } else if (d[i].platform === 'DeepSeek') { }}
+                    <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M887.96 279.264c-8.144-3.96-11.648 3.584-16.416 7.424-1.608 1.256-3 2.888-4.36 4.336-11.904 12.696-25.8 20.992-43.928 19.984-26.56-1.44-49.2 6.856-69.224 27.096-4.264-24.96-18.408-39.856-39.92-49.408-11.264-4.96-22.672-9.928-30.528-20.744-5.528-7.664-7.016-16.216-9.792-24.64-1.736-5.088-3.512-10.312-9.384-11.192-6.376-1-8.872 4.344-11.36 8.8-10.048 18.24-13.904 38.344-13.552 58.72 0.88 45.76 20.304 82.208 58.832 108.176 4.392 2.952 5.52 5.968 4.136 10.304-2.624 8.928-5.744 17.6-8.528 26.528-1.736 5.72-4.36 6.976-10.48 4.464-21.16-8.8-39.44-21.808-55.584-37.592-27.408-26.4-52.2-55.568-83.12-78.384a356.832 356.832 0 0 0-22.008-15.024c-31.552-30.544 4.136-55.624 12.376-58.584 8.656-3.08 3-13.76-24.912-13.64-27.888 0.128-53.44 9.432-85.96 21.816-4.768 1.88-9.76 3.264-14.904 4.336-29.528-5.536-60.192-6.792-92.24-3.2-60.32 6.72-108.512 35.128-143.944 83.656-42.544 58.272-52.552 124.528-40.296 193.672 12.88 72.784 50.176 133.128 107.52 180.28 59.44 48.84 127.904 72.784 206 68.2 47.44-2.704 100.264-9.056 159.824-59.28 15.032 7.416 30.792 10.376 56.968 12.64 20.16 1.88 39.544-1.008 54.576-4.088 23.52-4.96 21.88-26.656 13.384-30.68-68.96-31.992-53.84-18.976-67.608-29.48 35.048-41.36 87.88-84.288 108.536-223.336 1.616-11.064 0.224-17.976 0-26.96-0.128-5.408 1.104-7.544 7.36-8.176 17.28-1.952 34.04-6.664 49.456-15.144 44.68-24.328 62.68-64.24 66.944-112.144 0.64-7.296-0.128-14.896-7.864-18.736zM498.584 710.288c-66.848-52.36-99.256-69.584-112.64-68.824-12.512 0.688-10.264 14.96-7.52 24.256 2.88 9.176 6.64 15.528 11.904 23.576 3.632 5.344 6.128 13.32-3.632 19.232-21.536 13.328-58.96-4.464-60.72-5.344-43.552-25.52-79.968-59.28-105.64-105.416-24.76-44.44-39.16-92.08-41.52-142.936-0.64-12.32 2.992-16.656 15.248-18.856 16.136-2.96 32.808-3.584 48.944-1.264 68.216 9.936 126.288 40.36 174.96 88.448 27.784 27.472 48.816 60.216 70.48 92.216 23.024 34 47.816 66.376 79.36 92.904 11.12 9.304 20.024 16.4 28.52 21.624-25.648 2.824-68.472 3.456-97.744-19.616z"></path></svg>
+                {{# } }}
+                <span>{{= d[i].name }}</span>
+            </a>
+            {{# } }}
+        </script>
+        <!-- Main Content -->
+        <div class="layui-row layui-container layui-col-space16" id="divList">
+            <div class="layui-col-xs12 layui-col-sm8 layui-col-md9">
+                <div class="list-introduction layui-row">
+                    <div class="layui-col-xs6 layui-col-sm6 layui-col-md6" style="padding:10px;">
+                        <div class="layui-row layui-font-26" style="font-weight:bold;">全球顶尖AI集成服务</div>
+                        <div class="layui-row" style="display:flex;align-items:center;margin:10px 0 15px;">
+                            <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M802.923 383.309L428.077 758.155 220.943 551.155c-22.317-22.317-22.317-55.993 0-78.311 22.45-22.45 55.993-22.45 78.444 0l128.69 128.69L724.613 305c22.45-22.45 55.993-22.45 78.31 0 22.45 22.317 22.45 55.86 0 78.31zM512 64.323C255.845 64.323 64.323 255.845 64.323 512S255.845 959.677 512 959.677 959.677 768.155 959.677 512 768.155 64.323 512 64.323z" fill="#22C134"></path></svg>
+                            <span class="layui-font-16" style="margin-left:10px;">一站式集成全球最强GPT/Claude/Grok/Gemini等顶尖模型</span>
+                        </div>
+                        <div class="layui-row" style="display:flex;align-items:center;margin:15px 0;">
+                            <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M802.923 383.309L428.077 758.155 220.943 551.155c-22.317-22.317-22.317-55.993 0-78.311 22.45-22.45 55.993-22.45 78.444 0l128.69 128.69L724.613 305c22.45-22.45 55.993-22.45 78.31 0 22.45 22.317 22.45 55.86 0 78.31zM512 64.323C255.845 64.323 64.323 255.845 64.323 512S255.845 959.677 512 959.677 959.677 768.155 959.677 512 768.155 64.323 512 64.323z" fill="#22C134"></path></svg>
+                            <span class="layui-font-16" style="margin-left:10px;">免费开放节点，所有用户可在免费节点中体验AI全模型</span>
+                        </div>
+                        <div class="layui-row" style="display:flex;align-items:center;margin:15px 0;">
+                            <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M802.923 383.309L428.077 758.155 220.943 551.155c-22.317-22.317-22.317-55.993 0-78.311 22.45-22.45 55.993-22.45 78.444 0l128.69 128.69L724.613 305c22.45-22.45 55.993-22.45 78.31 0 22.45 22.317 22.45 55.86 0 78.31zM512 64.323C255.845 64.323 64.323 255.845 64.323 512S255.845 959.677 512 959.677 959.677 768.155 959.677 512 768.155 64.323 512 64.323z" fill="#22C134"></path></svg>
+                            <span class="layui-font-16" style="margin-left:10px;">同步官网原版功能，原生UI，解锁服务网络/地区限制</span>
+                        </div>
+                        <div class="layui-row" style="display:flex;align-items:center;margin:15px 0;">
+                            <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M802.923 383.309L428.077 758.155 220.943 551.155c-22.317-22.317-22.317-55.993 0-78.311 22.45-22.45 55.993-22.45 78.444 0l128.69 128.69L724.613 305c22.45-22.45 55.993-22.45 78.31 0 22.45 22.317 22.45 55.86 0 78.31zM512 64.323C255.845 64.323 64.323 255.845 64.323 512S255.845 959.677 512 959.677 959.677 768.155 959.677 512 768.155 64.323 512 64.323z" fill="#22C134"></path></svg>
+                            <span class="layui-font-16" style="margin-left:10px;">GPTs商店，Dall-E绘图，联网搜索，代码解释器等插件</span>
+                        </div>
+                        <div class="layui-row" style="display:flex;align-items:center;margin:15px 0;">
+                            <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M802.923 383.309L428.077 758.155 220.943 551.155c-22.317-22.317-22.317-55.993 0-78.311 22.45-22.45 55.993-22.45 78.444 0l128.69 128.69L724.613 305c22.45-22.45 55.993-22.45 78.31 0 22.45 22.317 22.45 55.86 0 78.31zM512 64.323C255.845 64.323 64.323 255.845 64.323 512S255.845 959.677 512 959.677 959.677 768.155 959.677 512 768.155 64.323 512 64.323z" fill="#22C134"></path></svg>
+                            <span class="layui-font-16" style="margin-left:10px;">最低仅需1元每天即可开通会员节点，解锁高额使用次数</span>
+                        </div>
+                        <div class="layui-row list-left-action" style="margin-left:-8px;">
+                            <a href="javascript:void(0);" class="layui-font-18 link" data-action="Subscribe">
+                                <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M33.109 306.046v-26.37h189.669v26.37c-37.2-1.732-54.32 7.045-51.322 26.37-4.464-7.005 67.74 258.612 67.74 258.612s13.615-37.804 13.615-37.804 59.76-186.221 66.39-212.552-7.165-34.625-38.407-34.625v-26.37h129.42v26.37c-28.272 3.542-45.393 18.459-51.32 44.83L236.168 743.79h-46.861L82.2 353.512c-7.463-35.146-23.815-50.969-49.092-47.466zM619.93 743.79H412.45v-26.37c40.162 1.772 58.747-13.185 55.783-44.831l.001-321.714c2.963-31.645-15.621-46.56-55.784-44.83v-26.37h207.48v26.37c-40.168-1.732-58.778 13.185-55.782 44.83l.001 321.714c-2.997 31.647 15.615 46.603 55.782 44.831v26.37zM852 743.79H644.482v-26.37c40.156 1.772 58.748-13.185 55.785-44.831V350.875c2.963-31.645-15.628-46.56-55.785-44.83v-26.37h205.282c90.72 3.54 137.58 44.83 140.58 123.938-3 80.88-47.626 123.94-133.885 129.215h-64.711v134.486c-2.997 35.186 17.086 51.877 60.252 50.104H852zM791.748 361.425v139.76h20.083c53.558 0 80.338-31.646 80.338-94.933-3.001-59.743-23.817-91.388-62.487-94.931-33.212-3.876-45.834 12.85-45.834 46.226z" fill="#272636"></path></svg>
+                                <span>立即开通</span>
+                            </a>
+                            <a href="javascript:void(0);" class="layui-font-18 link" data-action="AutoCar">
+                                <svg viewBox="0 0 1024 1024" width="24" height="24"><path d="M968.533 358.4c-8.533-4.267-19.2-2.133-25.6 6.4l-108.8 130.133-55.467-100.267c-4.266-6.4-8.533-10.667-17.066-10.667-6.4 0-12.8 2.133-19.2 6.4l-64 70.4-87.467-164.267 38.4-23.466c6.4-4.267 10.667-10.667 10.667-19.2V128c0-8.533-4.267-14.933-10.667-19.2l-106.666-64c-6.4-4.267-14.933-4.267-21.334 0l-106.666 64c-6.4 4.267-10.667 10.667-10.667 19.2v128c0 8.533 4.267 14.933 10.667 19.2l38.4 23.467-87.467 164.267-61.866-70.4c-6.4-6.4-12.8-8.533-19.2-8.533-6.4 0-12.8 4.267-17.067 10.667l-57.6 100.266L81.067 362.667c-6.4-8.533-17.067-10.667-25.6-6.4-8.533 6.4-14.933 14.933-12.8 25.6L138.667 853.333l-21.334 102.4c-2.133 6.4 0 12.8 4.267 17.067 4.267 6.4 10.667 8.533 17.067 8.533h744.533c6.4 0 12.8-2.133 17.067-8.533 4.267-4.267 6.4-10.667 4.267-17.067l-19.2-102.4L981.333 381.867c2.133-8.533-4.267-19.2-12.8-23.467zM757.333 441.6l49.067 87.467-55.467 64-49.066-91.734 55.466-59.733zM426.667 243.2V140.8l85.333-51.2 85.333 51.2v104.533l-85.333 51.2-85.333-53.333zM270.933 441.6l53.334 59.733-49.067 91.734-53.333-64 49.066-87.467zM164.267 938.667l8.533-42.667h676.267l8.533 42.667H164.267zM842.667 849.067v4.266H181.333v-4.266L102.4 454.4l160 189.867c4.267 6.4 10.667 8.533 19.2 8.533 6.4 0 12.8-4.267 17.067-10.667l170.666-324.267 32 19.2c2.133 4.267 6.4 4.267 10.667 4.266s8.533 0 10.667-2.133L554.667 320l172.8 322.133c4.267 6.4 8.533 10.667 17.066 10.667 6.4 0 14.933-2.133 19.2-8.533l160-189.867-81.066 394.667zM490.667 746.667h42.666v-106.667h-42.666v106.667z" fill="#4D4D4D"></path></svg>
+                                <span>立即使用</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6 layui-col-sm6 layui-col-md6" style="padding:10px;">
+                        <div class="layui-carousel" id="ID-carousel-demo-image">
+                            <div carousel-item>
+                                <div><img src="img/carousel-1.svg" style="width:100%;height:100%;object-fit:contain;" /></div>
+                                <div><img src="img/carousel-2.svg" style="width:100%;height:100%;object-fit:contain;" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-user layui-row" style="margin-top:15px;">
+                    <div class="layui-col-xs3 layui-col-sm3 layui-col-md3" style="text-align:center;">
+                        <span class="layui-icon layui-icon-username" style="font-size:65px;"></span>
+                    </div>
+                    <div class="layui-col-xs9 layui-col-sm9 layui-col-md9">
+                        <div class="layui-row" data-anonymous>
+                            <a href="javascript:void(0);" class="layui-link" data-action="Login">登录</a>
+                        </div>
+                        <div class="layui-row" data-exp-time>会员到期：<span>还未开通会员</span></div>
+                    </div>
+                </div>
+                <div class="layui-row list-action" data-action="AutoCar">
+                    <div class="layui-row">
+                        <div class="layui-row header">
+                            <span class="tag green">Auto</span>
+                            <span class="tag plus">Plus</span>
+                            <span class="tag team">Team</span>
+                            <span class="title">开始对话</span>
+                        </div>
+                        <div class="layui-row text">快速自动选择/切换会员镜像节点</div>
+                    </div>
+                    <div class="layui-row"><span class="iconfont icon-SVG"></span></div>
+                </div>
+                <div class="layui-row list-action" data-action="Subscribe">
+                    <div class="layui-row">
+                        <div class="layui-row header">
+                            <span class="tag green">低至一元一天</span>
+                            <span class="title">开通会员</span>
+                        </div>
+                        <div class="layui-row text">解锁全部GPT模型与高额使用次数</div>
+                    </div>
+                    <div class="layui-row"><span class="iconfont icon-vip"></span></div>
+                </div>
+                <a href="javascript:void(0);" class="layui-row list-action" data-action="Guide">
+                    <div class="layui-row">
+                        <div class="layui-row header">
+                            <span class="tag green">Hot</span>
+                            <span class="title">使用教程/问题说明</span>
+                        </div>
+                        <div class="layui-row text">不会用？打不开？点击这里！</div>
+                    </div>
+                    <div class="layui-row"><span class="iconfont icon-bangzhu"></span></div>
+                </a>
+            </div>
+        </div>
+        <!-- AI Tool Cards Section -->
+        <div class="layui-row layui-container layui-col-space16" id="divCarList">
+            <div class="layui-tab layui-tab-brief list-car-list">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">会员节点</li>
+                    <li>免费节点</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                        <div class="ai-tools-container vip"></div>
+                    </div>
+                    <div class="layui-tab-item">
+                        <div class="ai-tools-container free"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Card Template -->
+        <script type="text/html" id="tplCardList">
+            {{# for(var i=0; i<d.list.length; i++){ }}
+                {{# var item = d.list[i]; }}
+                <div class="ai-tool-card" data-action="{{= item.action }}">
+                    <div class="card-top">
+                        <div class="card-main-title">{{= item.title }}</div>
+                        <div class="card-arrow"></div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div class="card-content">
+                            <div class="card-row-1">
+                                <div class="card-left">
+                                    <div class="card-badge">{{= item.badge }}</div>
+                                    <div class="card-subtitle">{{= item.subtitle }}</div>
+                                    <div class="card-description">{{- item.description.join("<br />") }}</div>
+                                </div>
+                            </div>
+                            <div class="card-row-3">
+                                <div class="card-image">
+                                    <img src="{{= item.img }}" alt="{{= item.alt }}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{# } }}
+        </script>
+        <!-- Footer -->
+        <div class="layui-row list-footer" style="margin-top: -10px;">
+            <div class="layui-row layui-container">
+                <div class="layui-row layui-container layui-col-space16 body">
+                    <div class="layui-col-xs12 layui-col-sm12 layui-col-md6 left">
+                        <img src="img/footer-logo.svg" />
+                    </div>
+                    <div class="layui-col-xs12 layui-col-sm12 layui-col-md6 right">
+                        <div class="layui-row">&copy; 2023-2024 ChatOpens(Hong Kong). All Rights Reserved.</div>
+                        <div class="layui-row">
+                            <span>Designed by Bilibili Up主：还在路上的小光</span>
+                            <a href="javascript:void(0);">
+                                <img src="img/bilibili-icon.svg" />
+                                <span>BiliBili</span>
+                            </a>
+                        </div>
+                        <div class="layui-row">
+                            <span>公众号：云端超算</span><span style="margin-left:30px;">官方QQ讨论群：<span id="spanQQ">123456789</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>

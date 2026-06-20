@@ -1,0 +1,12 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280" width="500" height="280">
+  <rect width="500" height="280" rx="20" fill="url(#g)"/>
+  <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#667eea"/><stop offset="100%" stop-color="#764ba2"/></linearGradient></defs>
+  <circle cx="120" cy="100" r="50" fill="white" opacity="0.15"/>
+  <circle cx="350" cy="180" r="70" fill="white" opacity="0.1"/>
+  <text x="250" y="130" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">AI 智能对话</text>
+  <text x="250" y="170" font-family="Arial,sans-serif" font-size="18" fill="white" opacity="0.8" text-anchor="middle">GPT-5 / Claude-4 / Grok-4</text>
+  <text x="250" y="200" font-family="Arial,sans-serif" font-size="16" fill="white" opacity="0.6" text-anchor="middle">最新模型，即刻体验</text>
+  <circle cx="250" cy="240" r="6" fill="white" opacity="0.5"/>
+  <circle cx="280" cy="240" r="6" fill="white" opacity="0.3"/>
+  <circle cx="220" cy="240" r="6" fill="white" opacity="0.3"/>
+</svg>

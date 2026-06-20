@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+  <rect width="200" height="120" rx="10" fill="#10a37f"/>
+  <text x="100" y="50" font-family="Arial,sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle">GPT</text>
+  <text x="100" y="78" font-family="Arial,sans-serif" font-size="16" fill="white" opacity="0.8" text-anchor="middle">ChatGPT</text>
+  <text x="100" y="100" font-family="Arial,sans-serif" font-size="12" fill="white" opacity="0.5" text-anchor="middle">OpenAI</text>
+</svg>
